@@ -1,5 +1,5 @@
 --- 
-name: Install apache server and php packages
+name: Install apache and php 
 hosts: all
 become: yes
 tasks:
