@@ -1,6 +1,6 @@
 --- 
 name: installing apache server and php packages
-hosts: webserver
+hosts: all
 become: yes
 tasks:
   - name: install apache  
