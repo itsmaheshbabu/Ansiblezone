@@ -1,0 +1,35 @@
+--- 
+name: installing apache server and php packages
+hosts: webserver
+become: yes
+tasks:
+  - name: install apache  
+    apt:
+      name: apache2
+      update_cache: yes
+      state: present 
+  - name: install php packages 
+    apt: 
+      package:
+        - php 
+        - libapache2-mod-php 
+        - php-mysql
+      state: present
+  - name: create info.php 
+    copy:
+      dest: /var/www/html/info.php 
+      content: |
+        "<?php
+        phpinfo();
+        ?>"
+      notify: 
+        - restart apache2
+handlers:
+  - name: restart apache2
+    service: 
+      name: apache2
+      enabled: yes
+      state: restarted
+
+  
+
