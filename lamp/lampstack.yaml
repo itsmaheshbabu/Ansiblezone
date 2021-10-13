@@ -19,9 +19,9 @@
       copy:
         dest: /var/www/html/info.php 
         content: |
-          "<?php
+          <?php
           phpinfo();
-          ?>"
+          ?>
         notify: 
           - restart apache2
   handlers:
