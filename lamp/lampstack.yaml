@@ -9,12 +9,11 @@
         update_cache: yes
         state: present 
     - name: install php packages 
-      apt: 
-        package:
-          name: "{{ item }}"
-          state: present
-        loop: "{{ php_packages }}"
-    - name: create info.php 
+      package:
+        name: "{{ items }}"
+        state: present
+      loop: "{{ php_packages }}"
+    - name: Copy the php info page
       copy:
         dest: "{{ info_page_path }}"
         src: "info.php"
