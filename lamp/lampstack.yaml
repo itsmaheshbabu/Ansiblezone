@@ -1,27 +1,23 @@
 --- 
 - name: Install apache and php 
-  hosts: all
+  hosts: webserver
   become: yes
   tasks:
     - name: install apache2 
       apt:
-        name: apache2
+        name: "{{ apache_package }}"
         update_cache: yes
         state: present 
     - name: install php packages 
       apt: 
         package:
-          - php 
-          - libapache2-mod-php 
-          - php-mysql
-        state: present
+          name: "{{ item }}"
+          state: present
+        loop: "{{ php_packages }}"
     - name: create info.php 
       copy:
-        dest: /var/www/html/info.php 
-        content: |
-          <?php
-          phpinfo();
-          ?>
+        dest: "{{ info_page_path }}"
+        src: "info.php"
       notify: 
         - Restart apache2
   handlers:
