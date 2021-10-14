@@ -1,6 +1,6 @@
 --- 
 - name: Install apache and php 
-  hosts: all
+  hosts: webserver
   become: yes
   tasks:
     - name: fail on unspported versions 
