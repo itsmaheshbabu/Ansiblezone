@@ -2,6 +2,7 @@
 - name: Install apache and php 
   hosts: webserver
   become: yes
+  gather_facts: no
   tasks:
     - name: fail on unspported versions 
       fail:
