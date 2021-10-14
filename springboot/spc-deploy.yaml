@@ -1,0 +1,61 @@
+---
+- name: deploy springboot user as linux service
+  hosts: appserver
+  become: yes
+  tasks:
+    - name: fail on unsupported versions
+      fail: 
+        msg: This playbook supports only CentOS 7 and Ubuntu 18 distributions
+      when:
+        - ansible_facts['distribution'] != "Ubuntu"
+        - ansible_facts['distribution'] != "CentOS"
+        - (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version'] != "18")
+        - (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] != "7")
+    - name: install java
+      package:
+        name: "{{ package }}"
+        state: present 
+      notify: debug message for java
+    - name: create spring petclinic directory
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+      notify:
+        - debug message for directory creation
+    - name: download spring petclinic
+      get_url:
+         url: "{{ download_url}}"
+         dest: "{{ download_url_dest}}"
+    - name: Create springboot user 
+      user:
+        name: "{{ user_name }}"
+        password: "{{ user_name }}"
+        state: present 
+      notify:
+        - change ownership of jar file
+    - name: copy spring petclinic service file
+      copy:
+        dest: "{{ service_file }}"
+        src: springpetclinic.service
+    - name: enable and start spring petclinic
+      systemd:
+        name: springpetclinic.service
+        enabled: yes
+        state: started
+  handlers:
+    - name: change ownership of jar file
+      file:
+        path: "{{ download_url_dest}}"
+        owner: "{{ user_name }}"
+        mode: '500'
+        state: file
+    - name: debug message for java
+      debug:
+        msg: "Java with package {{package}} is installed"
+    - name: debug message for directory creation 
+      debug:
+        msg: "Directory created at {{ app_dir}}"
+
+
+        
+      
