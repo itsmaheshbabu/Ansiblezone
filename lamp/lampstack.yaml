@@ -1,14 +1,17 @@
 --- 
 - name: Install apache and php 
-  hosts: webserver
+  hosts: all
   become: yes
+  gather_facts: no
   tasks:
     - name: fail on unspported version 
       fail:
-        msg: This playbook supports only on ubuntu 18 distribution 
+        msg: This playbook supports only on ubuntu 18 and centos 7 distribution 
       when:
         - ansible_facts['distribution'] != "ubuntu"
+        - ansible_facts['distribution'] != "centOS"
         - (ansible_facts['distribution'] == "ubuntu" and ansible_facts['distribution_major_version'] != "18" )
+        - (ansible_facts['distribution'] == "centOS" and ansible_facts['distribution_major_version'] != "7" )
     - name: Information about node and varaibles loaded
       debug:
         msg: "Node os is {{ ansible_facts['distribution'] }} package name is {{ package}} and the info location is {{ info_location }} and the php packages are {{ php_packages}}  "
