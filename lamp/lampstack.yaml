@@ -27,11 +27,11 @@
         dest: "{{ info_location }}"
         src: "info.php"
       notify: 
-        - Restart apache2
+        - Restart Apache
   handlers:
-    - name: Restart apache2
+    - name: Restart Apache
       service: 
-        name: apache2
+        name: "{{ package }}"
         enabled: yes
         state: restarted
 
