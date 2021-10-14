@@ -4,9 +4,9 @@
   become: yes
   gather_facts: no
   tasks:
-    - name: fail on unspported version 
+    - name: fail on unspported versions 
       fail:
-        msg: This playbook supports only on ubuntu 18 and centos 7 distribution 
+        msg: This playbook supports only on ubuntu 18 and centos 7 distributions 
       when:
         - ansible_facts['distribution'] != "Ubuntu"
         - ansible_facts['distribution'] != "CentOS"
