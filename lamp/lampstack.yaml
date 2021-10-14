@@ -3,19 +3,28 @@
   hosts: webserver
   become: yes
   tasks:
-    - name: install apache2 
-      apt:
-        name: "{{ apache_package }}"
+    - name: fail on unspported version 
+      fail:
+        msg: This playbook supports only on ubuntu 18 distribution 
+      when:
+        - ansible_facts['distribution'] != "ubuntu"
+        - (ansible_facts['distribution'] == "ubuntu" and ansible_facts['distribution_major_version'] != "18" )
+    - name: Information about node and varaibles loaded
+      debug:
+        msg: "Node os is {{ ansible_facts['distribution'] }} package name is {{ package}} and the info location is {{ info_location }} and the php packages are {{ php_packages}}  "
+    - name: install apache
+      package:
+        name: "{{ package }}"
         update_cache: yes
         state: present 
     - name: install php modules 
-      apt:
+      package:
         name: "{{ item }}"
         state: present
       loop: "{{ php_packages }}"
     - name: Copy the php info page
       copy:
-        dest: "{{ info_page_path }}"
+        dest: "{{ info_location }}"
         src: "info.php"
       notify: 
         - Restart apache2
