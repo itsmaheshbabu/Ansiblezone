@@ -84,8 +84,6 @@
         dest: "{{ tomcat_manager_context }}"
       notify:
         - restart tomcat
-
-      
   handlers:
     - name: reload daemon
       systemd:

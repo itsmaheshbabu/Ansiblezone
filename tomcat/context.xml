@@ -1,34 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@itsmaheshbabu 
-asquarezone
-/
-AnsibleZone
-Public
-9
-14271
-Code
-Issues
-3
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-AnsibleZone/May21/tomcat9/context.xml
-@qtsathish
-qtsathish corrected conf
-Latest commit 479117a on May 16
- History
- 1 contributor
-24 lines (22 sloc)  1.28 KB
-   
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
