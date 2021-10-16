@@ -60,7 +60,7 @@
         group: "{{ tomcat_group }}"
         recurse: yes
         state: directory
-        loop: "{{ tomcat_directories_for_group_permissions }}"
+      loop: "{{ tomcat_directories_for_group_permissions }}"
     - name: copy the tomcat service 
       template:
         src: tomcat.service.j2
