@@ -68,7 +68,7 @@
       notify:
         - reload daemon
     - name: enable and start tomcat service
-      systemd:
+      service:
         name: tomcat.service
         enabled: yes
         state: started
