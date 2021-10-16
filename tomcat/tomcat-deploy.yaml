@@ -1,0 +1,35 @@
+--- 
+- name: Install tomcat 9
+  hosts: all
+  become: yes
+  tasks:
+    - name: fail on unsupported versions
+      fail:
+        msg: This playbook supports only Ubuntu 18 and CentOS 7 distributions
+      when:
+        - ansible_facts['distribution'] != "Ubuntu"
+        - ansible_facts['distribution'] != "CentOS"
+        - (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['major_distribution_version'] != "18")
+        - (ansible_facts['distribution'] == "CentOS" and ansible_facts['major_distribution_version'] != "7")
+    - name: install java
+      package:
+        name: "{{ java_package }}"
+        update_cache: yes
+        state: present
+    - name: Ensure the group tomcat exists
+      group:
+        name: "{{ tomcat_group }}"
+        state: present 
+    - name: Ensure tomcat home directory exists
+      file:
+        path: "{{ tomcat_home_dir}}"
+        state: directory
+    - name: Ensure the user tomcat exists
+      user:
+        name: "{{ tomcat_user }}"
+        group: "{{ tomcat_group }}"
+        shell: "{{ tomcat_shell }}"
+    - name: Download tomcat
+      get_url:
+        url: "{{tomcat_url}}"
+        dest: "{{ tomcat_dest }}"
