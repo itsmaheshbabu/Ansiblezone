@@ -78,10 +78,16 @@
         dest: "{{ tomcat_users_xml }}"
       notify:
         - restart tomcat  
-    - name: copy the context file
+    - name: copy the context file to manager
       copy:
         src: context.xml
         dest: "{{ tomcat_manager_context }}"
+      notify:
+        - restart tomcat
+    - name: copy the context file to host manager
+      copy:
+        src: context.xml
+        dest: "{{ tomcat_host_manager_context }}"
       notify:
         - restart tomcat
   handlers:
