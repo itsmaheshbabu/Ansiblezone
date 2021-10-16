@@ -1,6 +1,6 @@
 --- 
 - name: Install tomcat 9
-  hosts: all
+  hosts: webserver
   become: yes
   tasks:
     - name: fail on unsupported versions
