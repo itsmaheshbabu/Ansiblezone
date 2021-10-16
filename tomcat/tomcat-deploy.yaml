@@ -59,10 +59,11 @@
         owner: "{{ tomcat_group }}"
         group: "{{ tomcat_group }}"
         recurse: yes
+        state: directory
         loop: "{{ tomcat_directories_for_group_permissions }}"
     - name: copy the tomcat service 
       template:
-        src: tomcat.service
+        src: tomcat.service.j2
         dest: "{{tomcat_service_file}}"
       notify:
         - reload daemon
