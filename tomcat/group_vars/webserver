@@ -6,6 +6,14 @@ tomcat_shell: /bin/false
 tomcat_url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.54/bin/apache-tomcat-9.0.54.tar.gz
 tomcat_download_dest: /tmp/apache-tomcat-9.0.54.tar.gz
 tomcat_check_dir: /opt/tomcat/conf
+tomcat_directories_for_group_permissions:
+  - /opt/tomcat/webapps
+  - /opt/tomcat/work
+  - /opt/tomcat/temp
+  - /opt/tomcat/logs
+tomcat_service_file: /etc/systemd/system/tomcat.service
+java_executable: /usr/lib/jvm/java-1.11.0-openjdk-amd64
+
 
 
 
