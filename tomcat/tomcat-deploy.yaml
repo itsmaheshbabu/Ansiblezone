@@ -32,4 +32,12 @@
     - name: Download tomcat
       get_url:
         url: "{{tomcat_url}}"
-        dest: "{{ tomcat_dest }}"
+        dest: "{{ tomcat_download_dest }}"
+    - name: check if the tomcat is extracted
+      stat:
+        path: "{{ tomcat_check_dir }}"
+        register: tomcat_conf
+    - name: untar the tomcat
+      command:
+        cmd: "tar xzvf {{ tomcat_download_dest }} -C {{ tomcat_home_dir }} --strip-components=1"
+      when: tomcat_conf.stat doesnot exists
