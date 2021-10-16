@@ -40,4 +40,4 @@
     - name: untar the tomcat
       command:
         cmd: "tar xzvf {{ tomcat_download_dest }} -C {{ tomcat_home_dir }} --strip-components=1"
-      when: tomcat_conf.stat doesnot exists
+      when: not tomcat_conf.stat.exists
