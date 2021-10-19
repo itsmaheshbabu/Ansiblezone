@@ -1,22 +1,22 @@
-Role Name
-=========
+springpetclinic
+================
 
-A brief description of the role goes here.
+This module installs springpetclinic on ubuntu 18 and centos 7 flavours
 
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+java_package: This varaible sets the java package name
+app_dir: This directory sets the path of app directory
+app_download_url: This url sets the download link of the jarfile 
+app_file_name: This path sets the path of jar file
+app_username: This varaible sets the username 
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook
 ----------------
@@ -25,12 +25,12 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - springpetclinic
 
 License
 -------
 
-BSD
+springboot
 
 Author Information
 ------------------
