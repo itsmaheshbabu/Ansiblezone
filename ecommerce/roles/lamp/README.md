@@ -7,7 +7,7 @@ This module installs lamp stack on ubuntu 18 and centos 7 flavours
 Role Variables
 --------------
 
-apache_package: This varaible sets the apache package name
+package: This varaible sets the apache package name
 php_packages: This varaibles sets the php packages to be installed
 info_location: This path sets the info.php file path
 
