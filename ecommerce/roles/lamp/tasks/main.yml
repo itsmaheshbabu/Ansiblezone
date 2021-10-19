@@ -13,7 +13,7 @@
     msg: "Node os is {{ ansible_facts['distribution'] }} package name is {{ package}} and the info location is {{ info_location }} and the php packages are {{ php_packages}}"
 - name: install apache
   package:
-    name: "{{ package }}"
+    name: "{{ apache_package }}"
     update_cache: yes
     state: present 
 - name: install php modules 
