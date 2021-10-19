@@ -4,3 +4,9 @@
   become: yes
   roles:
     - lamp
+
+- name: install springpetclinic 
+  hosts: appserver
+  become: yes
+  roles:
+    - springpetclinic

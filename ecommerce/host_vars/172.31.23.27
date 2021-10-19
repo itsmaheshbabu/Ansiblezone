@@ -3,3 +3,4 @@ php_packages:
   - php
   - php-mysql
   - php-fpm
+java_package: java-11-openjdk
