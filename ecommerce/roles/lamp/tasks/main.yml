@@ -1,0 +1,29 @@
+---
+# tasks file for role_skeleton
+- name: fail on unspported versions 
+  fail:
+    msg: This playbook supports only centOS 7 and ubuntu 18 distributions 
+  when:
+    - ansible_facts['distribution'] != "Ubuntu"
+    - ansible_facts['distribution'] != "CentOS"
+    - (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version'] != "18")
+    - (ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] != "7")
+- name: Information about node and varaibles loaded
+  debug:
+    msg: "Node os is {{ ansible_facts['distribution'] }} package name is {{ package}} and the info location is {{ info_location }} and the php packages are {{ php_packages}}"
+- name: install apache
+  package:
+    name: "{{ package }}"
+    update_cache: yes
+    state: present 
+- name: install php modules 
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ php_packages }}"
+- name: Copy the php info page
+  copy:
+    dest: "{{ info_location }}"
+    src: "info.php"
+  notify: 
+    - Restart Apache

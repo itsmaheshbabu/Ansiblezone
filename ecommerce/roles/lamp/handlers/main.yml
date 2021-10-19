@@ -1,0 +1,7 @@
+---
+# handlers file for role_skeleton
+- name: Restart Apache
+  service:
+    name: "{{ package }}"
+    enabled: yes
+    state: restarted

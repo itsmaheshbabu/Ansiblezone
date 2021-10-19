@@ -1,0 +1,6 @@
+--- 
+- name: install apache and php packages
+  hosts: webserver
+  become: yes
+  roles:
+    - lamp
