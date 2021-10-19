@@ -1,6 +1,0 @@
-package: openjdk-11-jdk
-app_dir: /usr/share/springpetclinic
-download_url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
-download_url_dest: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
-user_name: springbootuser
-service_file: /etc/systemd/system/springpetclinic.service
