@@ -10,3 +10,9 @@
   become: yes
   roles:
     - springpetclinic
+
+- name: install tomcat9
+  hosts: webserver
+  become: yes
+  roles:
+    - squintans.tomcat9
